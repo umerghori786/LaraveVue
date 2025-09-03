@@ -16,8 +16,8 @@ class TestGroupMiddleware
     public function handle(Request $request, Closure $next): Response
     {   
 
-        echo "helo this comes from global Middleware";
-        dd('here');
+        //echo "helo this comes from global Middleware";
+        //dd('here');
         return $next($request);
     }
 }
