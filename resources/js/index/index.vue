@@ -227,7 +227,7 @@ export default{
 	},
 	mounted()
 	{
-		const req = axios(`https://press.escuela-ray-bolivar-sosa.com/public/api/user/book`)
+		const req = axios(`https://press.escuela-ray-bolivar-sosa.com/api/user/book`)
 					.then((response)=>{
 
 						this.books = response.data;

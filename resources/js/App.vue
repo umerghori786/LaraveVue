@@ -163,7 +163,9 @@
                   <!-- EXTRA NAV -->
                   <div class="extra-nav">
                       <div class="extra-cell">
-                          <a href="contact-us.html" class="btn btn-primary btnhover">Get In Touch</a>
+                          <router-link v-bind:to="{name:'contact-us'}">
+                          <a href="#" class="btn btn-primary btnhover">Get In Touch</a>
+                          </router-link>
                       </div>
                   </div>
 
@@ -194,7 +196,9 @@
                           
                          
                           <li>
-                              <a href="contact-us.html"><span>Contact Us</span></a>
+                              <router-link v-bind:to="{name:'contact-us'}">
+                              <a href="#"><span>Contact Us</span></a>
+                              </router-link>
                           </li>
                       </ul>
                       <div class="dz-social-icon">

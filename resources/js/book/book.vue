@@ -155,7 +155,7 @@
 		methods:{
 			showBook()
 			{	
-				const req = axios(`https://press.escuela-ray-bolivar-sosa.com/public/api/user/book/${this.$route.params.id}`)
+				const req = axios(`https://press.escuela-ray-bolivar-sosa.com/api/user/book/${this.$route.params.id}`)
 							.then((response)=>{
 
 								this.book = response.data;
