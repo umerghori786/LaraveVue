@@ -23,15 +23,25 @@
 				</div>
 				
 				<div>
-					<button name="submit" type="submit" value="submit" class="btn w-100 btn-primary btnhover">SUBMIT</button>
+					<button  type="submit" value="submit" class="btn w-100 btn-primary btnhover ">SUBMIT  </button>
+					
+					
 				</div>
 			</form>
+            <Toast position="bottom-right" group="br" />
 		</div>
 	</div>
 </template>
 <script>
-	export default{
 
+	import Button from 'primevue/button';
+	import Toast from 'primevue/toast';
+
+	export default{
+		components:{
+			Button,
+			Toast
+		},
 		data()
 		{
 			return{
@@ -47,7 +57,15 @@
 				{
 					this.errors.push('complete all required fields')
 				}
-			}
+				if(this.formData.email)
+				{
+					axios.post(`/api/contact-us`, this.formData)
+								.then(()=>{
+                                    this.$toast.add({ severity: 'success', summary: 'Thanks for contacting us', detail: 'Message Content',group :'br' ,life: 3000 });
+								})
+				}
+			},
+			
 		}
 	}
 </script>
