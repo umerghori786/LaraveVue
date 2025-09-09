@@ -4,6 +4,7 @@ import home from "./home/home.vue";
 import index from "./index/index.vue";
 import book from "./book/book.vue";
 import contact from "./contact-us/contact.vue";
+import register from "./auth/register.vue";
 
 const routes = [
 
@@ -26,6 +27,11 @@ const routes = [
 		path : "/contact-us",
 		name : 'contact-us',
 		component : contact
+	},
+	{
+		path : "/register",
+		name : "register",
+		component : register
 	},
 
 

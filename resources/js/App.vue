@@ -61,7 +61,12 @@
                                   </li>
                               </ul>
                           </li>
-                          <li class="nav-item dropdown profile-dropdown ms-4">
+                          <li>
+                            <router-link v-bind:to="{name:'register'}">
+                            <button class="btn btn-primary  ms-4">login</button>
+                            </router-link>
+                          </li>
+                          <li class="nav-item dropdown profile-dropdown ms-4 d-none">
                               <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   <img src="./images/profile1.jpg" alt="/" />
                                   <div class="profile-info">
