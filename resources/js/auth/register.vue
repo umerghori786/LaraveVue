@@ -24,20 +24,20 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 col-md-6 mb-4">
 						<div class="login-area">
-							<form>
+							<form v-on:submit.prevent="registerSubmit()">
 								<h4 class="text-secondary">Registration</h4>
 								<p class="font-weight-600">If you don't have an account with us, please Registration.</p>
 								<div class="mb-4">
 									<label class="label-title">Username *</label>
-									<input name="dzName" required="" class="form-control" placeholder="Your Username" type="text">
+									<input v-model="formData.name"  class="form-control" placeholder="Your Username" type="text">
 								</div>
 								<div class="mb-4">
 									<label class="label-title">Email address *</label>
-									<input name="dzName" required="" class="form-control" placeholder="Your Email address" type="email">
+									<input v-model="formData.email"  class="form-control" placeholder="Your Email address" type="email">
 								</div>
 								<div class="mb-4">
 									<label class="label-title">Password *</label>
-									<input name="dzName" required="" class="form-control " placeholder="Type Password" type="password">
+									<input v-model="formData.password"  class="form-control " placeholder="Type Password" type="password">
 								</div>
 								<div class="mb-5">
 									<small>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="privacy-policy.html">privacy policy</a>.</small>
@@ -45,6 +45,9 @@
 								<div class="text-left">
 									<button class="btn btn-primary btnhover w-100 me-2">Register</button>
 								</div>
+								{{errors}}
+								
+												<div v-if="hasErrors">abc</div>
 							</form>
 						</div>
 					</div>
@@ -56,3 +59,43 @@
 	</div>
 	
 </template>
+<script>
+	export default{
+
+		data()
+		{
+			return{
+
+				formData : {name : null, email : null , password : null},
+				errors:null,
+			}
+		},
+
+		methods:{
+
+			registerSubmit()
+			{
+				axios.post(`/api/user/register`,this.formData)
+							.then(()=>{
+								console.log('here')
+							})
+							.catch(error=>{
+								if (422 == error.response.status) {
+									this.errors = error.response.data.errors;
+								}
+								
+							})		
+			},
+			errorFor(field)
+			{	
+				//console.log(this.hasErrors)
+				return this.errors[field] ? this.errors[field] : null;
+			},
+			computed: {
+			    hasErrors() {
+			      return this.errors !== null
+			    }
+			  }
+		}
+	}
+</script>
