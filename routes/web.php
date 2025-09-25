@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 
 
 Route::get('service',[ServiceController::Class,'index']);
+Route::get('service-container',[ServiceController::Class,'service']);
 
 
 

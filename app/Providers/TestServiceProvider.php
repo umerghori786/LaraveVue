@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\PaymentService;
 
 class TestServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,10 @@ class TestServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('PaymentServiceContainerTest',function(){
+
+            return new PaymentService;
+        });
     }
 
     /**

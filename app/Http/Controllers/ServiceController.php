@@ -26,4 +26,14 @@ class ServiceController extends Controller
         app('PaymentServiceContainer')->doPayment();
 
     }
+    /**
+     * display a specific resource
+     * 
+     */
+    public function service()
+    {
+        //(new PaymentService)->doPayment();
+        //$this->service->doPayment();
+        app('PaymentServiceContainerTest')->doPayment();
+    }
 }
