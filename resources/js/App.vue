@@ -59,7 +59,7 @@
                                       <a href="shop-cart.html" class="btn btn-sm btn-primary me-2 btnhover w-100">View Cart</a>
                                       <a href="shop-checkout.html" class="btn btn-sm btn-outline-primary btnhover w-100">Checkout</a>
                                   </li>
-                              </ul>
+                              </ul> 
                           </li>
                           <li v-if="!isAuthenticated">
                             <router-link v-bind:to="{name:'login'}">
