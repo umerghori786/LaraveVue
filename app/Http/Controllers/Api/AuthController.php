@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name'=>'required|string',
-            'email'=>'required|string|email|unique:users,email',
+            'email'=>'required|string|email|unique:users,email|unique:users,email',
             'password'=>'required',
         ]);
 
@@ -66,5 +66,19 @@ class AuthController extends Controller
         ];
 
         return response()->json($response,201);
+    }
+    /**
+     * check auth
+     * 
+     * @return \Illuminate\http\Response
+     */
+    public function checkAuth()
+    {
+        $status = \Auth::check() ? true : false;
+
+        $response = [
+            'status' => $status,
+        ];
+        return response()->json($response,200);
     }
 }

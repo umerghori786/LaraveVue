@@ -5,11 +5,12 @@
 		<div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm" style="background-image:url(images/background/bg3.jpg);">
 			<div class="container">
 				<div class="dz-bnr-inr-entry">
-					<h1>Registration</h1>
+					<h1>Login</h1>
 					<nav aria-label="breadcrumb" class="breadcrumb-row">
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
-							<li class="breadcrumb-item">Registration</li>
+							<li class="breadcrumb-item"><a href="#"> Home</a></li>
+
+							<router-link v-bind:to="{name:'register'}"> <li class="breadcrumb-item">Registration</li> </router-link>
 						</ul>
 					</nav>
 				</div>
@@ -24,17 +25,10 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-6 col-md-6 mb-4">
 						<div class="login-area">
-							<form v-on:submit.prevent="registerSubmit()">
-								<h4 class="text-secondary">Registration</h4>
+							<form v-on:submit.prevent="loginSubmit()">
+								<h4 class="text-secondary">Login</h4>
 								<p class="font-weight-600">If you don't have an account with us, please Registration.</p>
-								<div class="mb-4">
-									<label class="label-title">Username *</label>
-									<input v-model="formData.name"  class="form-control" placeholder="Your Username" type="text">
-
-									<div class="text-danger" v-for="i in this.errorFor('name')" :key="i">
-										{{i}}
-									</div>
-								</div>
+								
 								<div class="mb-4">
 									<label class="label-title">Email address *</label>
 									<input v-model="formData.email"  class="form-control" placeholder="Your Email address" type="email" :class="[{'is-invalid': this.errorFor('email')}]">
@@ -56,7 +50,7 @@
 									<small>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="privacy-policy.html">privacy policy</a>.</small>
 								</div>
 								<div class="text-left">
-									<button class="btn btn-primary btnhover w-100 me-2">Register</button>
+									<button class="btn btn-primary btnhover w-100 me-2">Login</button>
 								</div>
 								
 												
@@ -79,7 +73,7 @@
 		{
 			return{
 
-				formData : {name : null, email : null , password : null},
+				formData : {email : null , password : null},
 				errors:null,
 				status:null,
 			}
@@ -87,11 +81,19 @@
 
 		methods:{
 
-			registerSubmit()
+			loginSubmit()
 			{
-				axios.post(`/api/user/register`,this.formData)
-							.then(()=>{
-								console.log('here')
+				axios.post(`/api/user/login`,this.formData)
+							.then((response)=>{
+								
+
+								//manage state
+								this.$store.dispatch('checkAuthenticationStatus',true);
+								this.$store.dispatch('getAuthToken',response.data.token)
+
+								this.formData.email = null;
+								this.formData.password = null;
+								this.$router.push({name : 'profile'})
 							})
 							.catch(error=>{
 								if (422 == error.response.status) {

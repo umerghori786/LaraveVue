@@ -10,6 +10,13 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+Route::middleware('auth:sanctum')->prefix('user')->group(function(){
+
+    Route::get('checkauth',[AuthController::class,'checkAuth'])->name('checkAuth');
+    
+});
+
+
 Route::post('/contact-us',[ContactUsController::Class,'store']);
 
 /*=====================================AUTH ROUTE=====================================*/

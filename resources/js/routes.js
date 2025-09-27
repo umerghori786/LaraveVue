@@ -5,6 +5,8 @@ import index from "./index/index.vue";
 import book from "./book/book.vue";
 import contact from "./contact-us/contact.vue";
 import register from "./auth/register.vue";
+import login from "./auth/login.vue";
+import profile from "./profile/index.vue";
 
 const routes = [
 
@@ -33,6 +35,16 @@ const routes = [
 		name : "register",
 		component : register
 	},
+	{
+		path : "/login",
+		name : "login",
+		component : login
+	},
+	{
+		path : "/profile",
+		name : "profile",
+		component : profile
+	}
 
 
 ];
