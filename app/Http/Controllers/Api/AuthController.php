@@ -81,4 +81,20 @@ class AuthController extends Controller
         ];
         return response()->json($response,200);
     }
+    /**
+     * logout user and token delete
+     * 
+     * return \Illuminate\http\response Json
+     */
+    public function logout()
+    {
+        //auth()->user()->tokens()->delete();
+
+        $response = [
+
+            'message' => 'logged out',
+        ];
+
+        return response()->json($response);
+    }
 }

@@ -12,8 +12,8 @@ Route::get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->prefix('user')->group(function(){
 
-    Route::get('checkauth',[AuthController::class,'checkAuth'])->name('checkAuth');
-    
+    Route::get('checkauth',[AuthController::class,'checkAuth']);
+    Route::post('logout',[AuthController::class,'logout']);
 });
 
 

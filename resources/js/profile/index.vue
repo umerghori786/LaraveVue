@@ -33,7 +33,7 @@
 											</li>
 											
 											<li>
-												<a href="shop-login.html"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> 
+												<a href="#" v-on:click="logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> 
 												<span>Log Out</span></a>
 											</li>
 										</ul>
@@ -173,6 +173,17 @@
 								.catch((errors)=>{
 									console.log(errors)
 								})	
+			},
+			logout()
+			{
+				const req = axios.post(`/api/user/logout`)
+									.then((response)=>{
+
+										console.log(response.data.message);
+									})
+									.catch((errors)=>{
+										console.log(errors)
+									})
 			}
 		}
 	}
