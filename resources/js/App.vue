@@ -70,10 +70,10 @@
                           <li v-if="isAuthenticated" class="nav-item dropdown profile-dropdown ms-4 ">    
                               <router-link v-bind:to="{name:'profile'}">
                               <a class="nav-link" href="#" role="button" >
-                                  <img src="./images/profile1.jpg" alt="/" />
+                                  <img  v-bind:src="user_image" alt="/" />
                                   <div class="profile-info">
-                                      <h6 class="title">Brian</h6>
-                                      <span>info@gmail.com</span>
+                                      <h6 class="title">{{name}}</h6>
+                                      <span>{{email}}</span>
                                   </div>
                               </a>
                               </router-link>
@@ -308,6 +308,14 @@
 </template>
 <script>
   export default{
+    data()
+    {
+      return{
+        name: String,
+        email : String,
+        user_image : 'https://cdn-icons-png.flaticon.com/128/9322/9322043.png',
+      }
+    },
     mounted()
     {
       if(this.authToken){
@@ -315,6 +323,21 @@
       };
 
       this.$store.dispatch('checkAuthenticationStatusOnLoad')
+      this.getUser()
+    },
+    methods:{
+
+      getUser()
+      {
+        const req = axios.get(`/api/user`)
+                .then((response)=>{
+                  this.name = response.data.name;
+                  this.email = response.data.email 
+                })
+                .catch((errors)=>{
+                  console.log(errors)
+                })  
+      }
     },
     computed:{
 
