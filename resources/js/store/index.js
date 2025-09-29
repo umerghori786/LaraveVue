@@ -12,8 +12,14 @@ export default  createStore({
       state.isAuthenticated = status
     },
     setAuthToken(state,token)
-    {
+    { 
+      window.axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       state.token  = token;
+    },
+    resetAuth(state)
+    {
+      state.token = null;
+      state.isAuthenticated = false;
     }
     
   },
@@ -34,6 +40,12 @@ export default  createStore({
                         .then((response)=>{
                           commit('updateAuthenticationStatus',response.data.status)
                         })
+    },
+    logoutUser({commit})
+    {
+      commit('resetAuth');
+      localStorage.removeItem('token')
+      delete axios.defaults.headers.common['Authorization']
     }
     
   },
