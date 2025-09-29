@@ -2,7 +2,7 @@
 	
 	<div class="page-wraper">
 		
-	    <!-- Content -->
+	    <!-- Content --> 
 	    <div class="page-content bg-white">
 			<!-- contact area -->
 	        <div class="content-block">
@@ -157,7 +157,7 @@
 				}
 			}
 		},
-		mounted()
+		created()
 		{
 			this.getUser()
 		},
@@ -179,7 +179,8 @@
 				const req = axios.post(`/api/user/logout`)
 									.then((response)=>{
 
-										console.log(response.data.message);
+										this.$store.dispatch('logoutUser')
+										this.$router.push({name : 'home'})
 									})
 									.catch((errors)=>{
 										console.log(errors)

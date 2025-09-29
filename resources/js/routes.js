@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory}  from 'vue-router';
 
+import store from './store/index.js';
 import home from "./home/home.vue";
 import index from "./index/index.vue";
 import book from "./book/book.vue";
@@ -43,7 +44,11 @@ const routes = [
 	{
 		path : "/profile",
 		name : "profile",
-		component : profile
+		component : profile,
+		meta : {
+
+			requiresAuth  : true
+		}
 	}
 
 
@@ -54,5 +59,20 @@ const router = createRouter({
     routes
 });
 
+router.beforeEach((to , from , next)=>{
+
+	const isAuthenticated = localStorage.getItem('token');
+	console.log(isAuthenticated)
+	if (to.meta.requiresAuth && !isAuthenticated)
+	{
+		next('/login')
+	} else if ((to.name == 'login' || to.name == 'register') && isAuthenticated)
+	{
+		next('/');
+	} else {
+
+		next();
+	}
+})
 
 export default router;
