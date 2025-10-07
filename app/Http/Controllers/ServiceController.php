@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PaymentService;
+use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceController extends Controller
 {
@@ -35,5 +37,16 @@ class ServiceController extends Controller
         //(new PaymentService)->doPayment();
         //$this->service->doPayment();
         app('PaymentServiceContainerTest')->doPayment();
+    }
+    public function cache()
+    {   
+        $users = cache::remember('users',120,function(){
+
+            return User::all();
+        });
+
+        Cache::flush();
+        
+        return view('cache.index',compact('users'));
     }
 }
