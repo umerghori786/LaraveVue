@@ -47,7 +47,7 @@
                                           <div class="media-body">
                                               <h6 class="dz-title"><a href="books-detail.html" class="media-heading">{{product.title}}</a></h6>
                                               <span class="dz-price">${{product.price}}</span>
-                                              <span class="item-close">&times;</span>
+                                              <span class="item-close" v-on:click="removeItemFromCart(product.id)">&times;</span>
                                           </div>
                                       </div>
                                   </li>
@@ -338,6 +338,11 @@
                 .catch((errors)=>{
                   console.log(errors)
                 })  
+      },
+      removeItemFromCart(id)
+      {
+        var newcartproducts = this.cartProducts.filter((item)=>item.id !== id)
+        this.$store.dispatch('cartObject',JSON.stringify(newcartproducts));
       }
     },
     computed:{
