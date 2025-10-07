@@ -54,7 +54,7 @@
 		{
 			return{
 
-				cartObject : []
+				cartObject : this.$store.state.ecommCart,
 			}
 		},
 		methods:{
@@ -81,7 +81,7 @@
 				}
 
 				
-				console.log(this.cartObject)
+				this.$store.dispatch('cartObject',JSON.stringify(this.cartObject))
 			}
 		}
 	}
