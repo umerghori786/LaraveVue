@@ -32,7 +32,10 @@
 						<div class="price">
 							<span class="price-num">${{book.discount_price}}</span>
 						</div>
-						<a href="shop-cart.html" class="btn btn-secondary box-btn btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
+						<a class="btn btn-secondary box-btn btnhover2" v-on:click="addToCart(book.id, book.title , book.discount_price,
+							book.images.filter((item)=>{if(!item.is_video){ return item}})
+
+						)"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
 					</div>
 				</div>
 			</div>
@@ -45,7 +48,41 @@
 	export default{
 
 		props:{
-			 books : Object
+			 books : Object,
+		},
+		data()
+		{
+			return{
+
+				cartObject : []
+			}
+		},
+		methods:{
+
+			addToCart(id , title , price,image_url)
+			{
+				var cartItem = {id : id , title : title , price : price , quantity : 1 ,image_url : image_url[0].url}
+
+				var check = this.cartObject.some((item)=>{
+
+					return item.id === id
+				})
+				if(!check)
+				{
+					this.cartObject.push(cartItem)
+				}else{
+					this.cartObject.map((item)=>{
+
+						if(item.id === id)
+						{
+							item.quantity++
+						}
+					})
+				}
+
+				
+				console.log(this.cartObject)
+			}
 		}
 	}
 </script>
