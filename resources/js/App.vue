@@ -37,20 +37,21 @@
                                   <span class="badge">{{getCartCount}}</span>
                               </button>
                               <ul class="dropdown-menu cart-list">
-                                  <li class="cart-item">
+                                  <li v-if="getCartCount > 0" class="cart-item" v-for="(product, index) in cartProducts">
                                       <div class="media">
                                           <div class="media-left">
                                               <a href="books-detail.html">
-                                                  <img alt="" class="media-object" src="./images/books/small/pic1.jpg" />
+                                                  <img alt="" class="media-object" v-bind:src="product.image_url" />
                                               </a>
                                           </div>
                                           <div class="media-body">
-                                              <h6 class="dz-title"><a href="books-detail.html" class="media-heading">Real Life</a></h6>
-                                              <span class="dz-price">$28.00</span>
+                                              <h6 class="dz-title"><a href="books-detail.html" class="media-heading">{{product.title}}</a></h6>
+                                              <span class="dz-price">${{product.price}}</span>
                                               <span class="item-close">&times;</span>
                                           </div>
                                       </div>
                                   </li>
+
                                   
                                   <li class="cart-item text-center">
                                       <h6 class="text-secondary">Totle = $500</h6>
@@ -352,6 +353,10 @@
       getCartCount()
       {
         return this.$store.getters.getCartLength
+      },
+      cartProducts()
+      {
+        return this.$store.state.ecommCart
       }
 
     }
