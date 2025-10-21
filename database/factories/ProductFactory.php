@@ -22,9 +22,13 @@ class ProductFactory extends Factory
         return [
             'title' => fake()->name(),
             'content' => fake()->paragraph(),
+
             'url' => \Arr::random($random_images),
             'status' => rand(0,1),
             'trending' => rand(0,1)
+
+            
+
         ];
     }
 }
