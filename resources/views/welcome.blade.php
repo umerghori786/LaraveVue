@@ -17,7 +17,7 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png" />
 
         <!-- PAGE TITLE HERE -->
-        <title>Bookland Book Store Ecommerce Website</title>
+        <title>Bookland Book Store Ecommerce Website (umer)</title>
 
         <!-- MOBILE SPECIFIC -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
