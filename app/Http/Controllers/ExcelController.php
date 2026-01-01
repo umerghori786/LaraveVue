@@ -8,7 +8,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\imports\UsersImport;
 use App\Jobs\ExcelImportUserJob;
-use Illuminate\Support\Facades\Storage;
+use App\Jobs\SendEmailJob;
+
 
 class ExcelController extends Controller
 {
@@ -20,6 +21,7 @@ class ExcelController extends Controller
     public function import()
     {   
         $users = User::get();
+        SendEmailJob::dispatch(User::first());
         return view('excel.import',compact('users'));
     }
 
@@ -29,7 +31,11 @@ class ExcelController extends Controller
         $path = request()->file('file')->store('imports', 'local');
         ExcelImportUserJob::dispatch($path);
 
-
+        //send email using job 
+        /*User::all()->each(function($user) {
+            SendEmailJob::dispatch($user);
+        });*/
+        SendEmailJob::dispatch(User::first());
         
         return back();
 

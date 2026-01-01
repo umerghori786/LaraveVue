@@ -7,6 +7,8 @@ use App\Services\PaymentService;
 use Illuminate\Pagination\Paginator;
 use App\Observers\ProductObserver;
 use App\Models\Product;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         Product::observe(ProductObserver::class);
+
+        RateLimiter::for('email-sender', function () {
+                return Limit::perMinute(10); // adjust based on your Mailtrap plan
+            });
 
 
     }
