@@ -46,6 +46,7 @@ class ServiceController extends Controller
         });
 
         //Cache::flush();
+        dd(Cache::get('users'));
         
         return view('cache.index',compact('users'));
     }
