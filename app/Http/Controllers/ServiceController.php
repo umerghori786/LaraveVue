@@ -45,7 +45,7 @@ class ServiceController extends Controller
             return User::all();
         });
 
-        Cache::flush();
+        //Cache::flush();
         
         return view('cache.index',compact('users'));
     }
