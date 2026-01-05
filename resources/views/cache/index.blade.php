@@ -10,22 +10,24 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">User Information</h2>
+    <h2 class="mb-4 text-center">Porduct Information</h2>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>title</th>
+                <th>Image</th>
+                <th>Content</th>
             </tr>
         </thead>
         <tbody>
 
-        @foreach($users as $key=> $user)
+        @foreach($products as $key=> $product)
             <tr>
                 <td>{{$key + 1}}</td>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
+                <td>{{$product->title}}</td>
+                <td><img src="{{$product->url}}" class="card-img-top product-img" alt="Product 1"></td>
+                <td>{{\Str::limit($product->content,100)}}</td>
             </tr>
         @endforeach   
         </tbody>

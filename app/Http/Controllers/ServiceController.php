@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PaymentService;
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 
 class ServiceController extends Controller
@@ -40,14 +40,17 @@ class ServiceController extends Controller
     }
     public function cache()
     {   
-        $users = cache::remember('users',120,function(){
+        dd(optional(Cache::get('products'))->toArray());
 
-            return User::all();
+        $products = cache::remember('products',120,function(){
+
+            return Product::all();
         });
 
         //Cache::flush();
-        dd(Cache::getStore());
+        //dd(Cache::getStore());
+
         
-        return view('cache.index',compact('users'));
+        return view('cache.index',compact('products'));
     }
 }
