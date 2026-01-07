@@ -13,5 +13,10 @@ class Product extends Model
 
     protected $fillable = ['title','content','url','slug'];
 
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class,'taggable')->withTimestamps();
+    }
+
     
 }

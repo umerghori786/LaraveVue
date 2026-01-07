@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -54,4 +55,48 @@ class Post extends Model
             
         );
     }
+
+    /*======================relationship===========*/
+    /*=============================================*/
+    public function image()
+    {
+        return $this->morphOne(Image::class,'imageable');
+    }
+    public function images()
+    {
+        return $this->morphMany(Image::class,'imageable');
+    }
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class,'taggable')->withTimestamps();
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /*===================globalscope================*/
+    /*==============================================*/
+
+    protected static function booted()
+    {
+        static::addGlobalScope('userdetail',function(Builder $builder){
+
+            $builder->with('user:id,name');
+
+        });
+    }
+
+    /*=====================local scope=============*/
+    /*=============================================*/
+    public function scopeActive($query)
+    {
+        return $query->where('status',1);
+    }
+    public function scopeInActive($query)
+    {
+        return $query->where('status',0);
+    }
+
+    
 }
