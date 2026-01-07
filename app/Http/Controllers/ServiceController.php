@@ -40,15 +40,19 @@ class ServiceController extends Controller
     }
     public function cache()
     {   
-        dd(optional(Cache::get('products'))->toArray());
+        //dd(optional(Cache::get('products'))->toArray());
 
-        $products = cache::remember('products',120,function(){
+        /*$products = cache::remember('products',120,function(){
 
-            return Product::all();
+            return Product::latest()->get();
+        });*/
+        $products = cache::rememberForever('products',function(){
+
+            return Product::latest()->get();
         });
 
         //Cache::flush();
-        //dd(Cache::getStore());
+        dd(Cache::getStore());
 
         
         return view('cache.index',compact('products'));
