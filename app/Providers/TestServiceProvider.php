@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\PaymentService;
+use Illuminate\Support\Facades\Event;
+use App\Events\NewOrderEvent;
+use App\Listeners\OrderEmailListener;
+use App\Listeners\OrderSaveListener;
 
 class TestServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,13 @@ class TestServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+        Event::listen(
+            NewOrderEvent::class,
+            OrderEmailListener::class
+        );
+        Event::listen(
+            NewOrderEvent::class,
+            OrderSaveListener::class
+        );
     }
 }
