@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PaymentService;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
@@ -46,6 +47,15 @@ class ServiceController extends Controller
 
             return Product::latest()->get();
         });*/
+
+        //gate
+        /*if(!Gate::allows('product-delete', Product::first()))
+        {
+            abort(403);
+        }*/
+        //policies
+        //$this->authorize('view',Product::first());
+
         $products = cache::rememberForever('products',function(){
 
             return Product::latest()->get();
