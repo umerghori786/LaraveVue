@@ -16,6 +16,7 @@ class GlobalTestMiddleware
     public function handle(Request $request, Closure $next): Response
     {   
         dump('helo thiss comes from GlobalTestMiddleware');
+
         return $next($request);
     }
 }
