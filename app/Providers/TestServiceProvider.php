@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\PaymentService;
+use App\services\PaymentService;
 use Illuminate\Support\Facades\Event;
 use App\Events\NewOrderEvent;
 use App\Listeners\OrderEmailListener;
@@ -16,9 +16,9 @@ class TestServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('PaymentServiceContainerTest',function(){
+        $this->app->bind('PaymentServiceContainer',function(){
 
-            return new PaymentService;
+            return new PaymentService();
         });
     }
 

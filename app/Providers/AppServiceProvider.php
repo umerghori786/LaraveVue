@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\PaymentService;
+use App\services\PaymentService;
 use Illuminate\Pagination\Paginator;
 use App\Observers\ProductObserver;
 use App\Models\Product;
@@ -20,10 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('PaymentServiceContainer',function(){
+        /*$this->app->bind('PaymentServiceContainer',function(){
 
             return new PaymentService();
-        });
+        });*/
     }
 
     /**

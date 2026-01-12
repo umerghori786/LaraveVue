@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\PaymentService;
+use App\services\PaymentService;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
@@ -15,10 +15,10 @@ class ServiceController extends Controller
     */
     protected $service;
 
-    /*public function __construct(PaymentService $service)
-    {
+    public function __construct(PaymentService $service)
+    {   
         $this->service = $service;
-    }*/
+    }
     public function index(PaymentService $service)
     {
         //(new PaymentService)->doPayment();
@@ -66,5 +66,14 @@ class ServiceController extends Controller
 
         
         return view('cache.index',compact('products'));
+    }
+    public function testService(PaymentService $service)
+    {
+        (new PaymentService())->doPayment();
+        $service->doPayment();
+        $obj = new PaymentService();
+        $obj->doPayment();
+        $this->service->doPayment();
+        app('PaymentServiceContainer')->doPayment();
     }
 }

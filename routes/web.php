@@ -15,6 +15,7 @@ use App\Http\Controllers\ExcelController;
 
 Route::get('service',[ServiceController::Class,'index']);
 Route::get('service-container',[ServiceController::Class,'service']);
+Route::get('test-service',[ServiceController::Class,'testService']);
 Route::get('cache',[ServiceController::class,'cache']);
 Route::get('products',ProductController::class);
 Route::get('pipelines',[PrecController::class,'index']);
