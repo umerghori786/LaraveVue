@@ -17,10 +17,10 @@ class TestMiddleware
     {   
         if(\Auth::check())
         {
-            return $next($request);
-        }else{
-            dd('bye');
+            print_r('auth checked hy');
         }
+
+        return $next($request);
         
     }
 }
