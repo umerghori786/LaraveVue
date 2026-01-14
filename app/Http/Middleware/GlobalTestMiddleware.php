@@ -29,7 +29,7 @@ class GlobalTestMiddleware
                 ->groupBy('user_id')
                 ->get();
         
-        Benchmark::dd([
+        /*Benchmark::dd([
             'Scenario 1' => fn () => Post::select([
 
                     'user_id',
@@ -65,7 +65,8 @@ class GlobalTestMiddleware
                 ->where('user_id',3)
                 ->groupBy('user_id')
                 ->cursor(), // 20.0 ms    
-        ]);  
+        ]); 
+        */ 
         //dump('helo thiss comes from GlobalTestMiddleware');
 
         return $next($request);

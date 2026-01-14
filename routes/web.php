@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PrecController;
 use App\Http\Controllers\SpatieController;
 use App\Http\Controllers\ExcelController;
-
+use App\Http\Controllers\GoogleAuthController;
 
 
 
@@ -22,6 +22,12 @@ Route::get('spatie',[SpatieController::class,'index']);
 Route::get('excel/export',[ExcelController::class,'export'])->name('excelExport');
 Route::get('excel/import',[ExcelController::class,'import'])->name('excelImport');
 Route::post('excel/import',[ExcelController::class,'importSheet'])->name('Import');
+
+/*google auth*/
+
+Route::get('auth/google',[GoogleAuthController::Class,'redirectToGoogle'])->name('redirect.google');
+Route::get('auth/google/callback',[GoogleAuthController::Class,'handleGoogleCallBack'])->name('handleGoogleCallBack');
+/*end*/
 
 
 
