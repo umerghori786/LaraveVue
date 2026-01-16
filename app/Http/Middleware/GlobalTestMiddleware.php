@@ -29,6 +29,17 @@ class GlobalTestMiddleware
                 ->whereYear('created_at',2026)
                 ->groupBy('user_id')
                 ->get();
+                
+        $data = Post::selectRaw(
+
+                    'user_id,
+                     COUNT(id) as total_posts'
+                )
+                
+                ->with('user:id,name')
+                ->whereYear('created_at',2026)
+                ->groupBy('user_id')
+                ->get();        
 
         $map = Post::all()->map(function($post){
 
