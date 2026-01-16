@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Post;
 use DB;
 use Illuminate\Support\Benchmark;
+use Exception;
 
 class GlobalTestMiddleware
 {
@@ -28,7 +29,30 @@ class GlobalTestMiddleware
                 ->whereYear('created_at',2026)
                 ->groupBy('user_id')
                 ->get();
+
+        $map = Post::all()->map(function($post){
+
+            return [
+
+                'id' => $post->id,
+                'title' => $post->title
+            ];
+        }); 
+
+        //db transaction
+        /*
+        DB::transaction(function(){
+
+            $post = Post::create(['title'=>'this is title','content'=>'this is content','status'=>1]);
+
+            //throw new Exception("Error Processing Request", 1);
+            
+            $post->update(['user_id'=>1]);
+        });
         
+
+        dd('done');
+        */
         /*Benchmark::dd([
             'Scenario 1' => fn () => Post::select([
 
