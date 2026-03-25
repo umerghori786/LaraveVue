@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 
 class ProductObserver
 {
@@ -13,6 +14,8 @@ class ProductObserver
     {
         $product->slug = \Str::slug($product->title);
         $product->save();
+
+        Cache::forget('products');
     }
 
     /**

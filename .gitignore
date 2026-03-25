@@ -8,8 +8,10 @@
 /.fleet
 /.idea
 /.nova
+NUL
 /.phpunit.cache
 /.vscode
+NUL
 /.zed
 /auth.json
 /node_modules

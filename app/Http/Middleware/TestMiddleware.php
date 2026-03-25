@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class TestGroupMiddleware
+class TestMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,12 @@ class TestGroupMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {   
+        if(\Auth::check())
+        {
+            print_r('auth checked hy');
+        }
 
-        //echo "helo this comes from global Middleware";
-        //dd('here');
         return $next($request);
+        
     }
 }

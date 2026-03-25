@@ -3,7 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\TestGroupMiddleware;
+use App\Http\Middleware\TestMiddleware;
+use App\Http\Middleware\GlobalTestMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,7 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         
-        $middleware->append(TestGroupMiddleware::class);
+        $middleware->alias([
+                'check-auth' => TestMiddleware::class
+            ]);
+        $middleware->append(GlobalTestMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

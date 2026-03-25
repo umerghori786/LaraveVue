@@ -1,0 +1,20 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+Use App\Models\Post;
+
+class PostSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Post::factory()
+            ->count(200)
+            ->create();
+    }
+}
