@@ -2,12 +2,14 @@ import {createRouter, createWebHistory}  from 'vue-router';
 
 import store from './store/index.js';
 import home from "./home/home.vue";
+import home1 from "./home1/home1.vue";
 import index from "./index/index.vue";
 import book from "./book/book.vue";
 import contact from "./contact-us/contact.vue";
 import register from "./auth/register.vue";
 import login from "./auth/login.vue";
 import profile from "./profile/index.vue";
+import post from "./home1/post/post.vue";
 
 const routes = [
 
@@ -15,6 +17,16 @@ const routes = [
 		path: "/",
 		name : "home",
 		component : home
+	},
+	{
+		path: "/home1",
+		name: "home1",
+		component: home1
+	},
+	{
+		path: "/post/show/:id",
+		name : "post",
+		component : post
 	},
 	{
 		path : "/books",

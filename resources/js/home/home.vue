@@ -33,19 +33,19 @@ export default{
     return{
 
       books : [],
-      loading : false,
+      loading : true,
 
     }
   },
   mounted()
   {
-    const req = axios(`https://press.escuela-ray-bolivar-sosa.com/api/user/book`)
-                      .then((response)=>{
-                        this.books = response.data;
-                      })
-                      .then(()=>{
-                        this.loading = true
-                      })  
+    // const req = axios(`https://press.escuela-ray-bolivar-sosa.com/api/user/book`)
+    //                   .then((response)=>{
+    //                     this.books = response.data;
+    //                   })
+    //                   .then(()=>{
+    //                     this.loading = true
+    //                   })  
   }
 }
 </script>
