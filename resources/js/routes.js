@@ -10,6 +10,7 @@ import register from "./auth/register.vue";
 import login from "./auth/login.vue";
 import profile from "./profile/index.vue";
 import post from "./home1/post/post.vue";
+import cart from "./cart/index.vue";
 
 const routes = [
 
@@ -17,6 +18,11 @@ const routes = [
 		path: "/",
 		name : "home",
 		component : home
+	},
+	{
+		path: "/cart",
+		name : "cart",
+		component : cart
 	},
 	{
 		path: "/home1",

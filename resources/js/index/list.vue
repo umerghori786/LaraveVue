@@ -32,10 +32,7 @@
 						<div class="price">
 							<span class="price-num">${{book.price}}</span>
 						</div>
-						<a class="btn btn-secondary box-btn btnhover2" v-on:click="addToCart(book.id, book.title , book.price,
-							book.images.filter((item)=>{if(!item.is_video){ return item}})
-
-						)"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
+						<a class="btn btn-secondary box-btn btnhover2" v-on:click="addToCart(book.id, book.title, book.price , book.thumbnail)"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
 					</div>
 				</div>
 			</div>
@@ -61,16 +58,15 @@
 
 			addToCart(id , title , price,image_url)
 			{
-				var cartItem = {id : id , title : title , price : price , quantity : 1 ,image_url : image_url[0].url}
+				var cartItem = {id : id , title : title , price : price, quantity : 1 , image_url : image_url};
 
-				var check = this.cartObject.some((item)=>{
+				var check = this.cartObject.some((item)=> item.id === id);
 
-					return item.id === id
-				})
 				if(!check)
 				{
-					this.cartObject.push(cartItem)
+					this.cartObject.push(cartItem);
 				}else{
+
 					this.cartObject.map((item)=>{
 
 						if(item.id === id)
@@ -80,8 +76,7 @@
 					})
 				}
 
-				
-				this.$store.dispatch('cartObject',JSON.stringify(this.cartObject))
+				this.$store.dispatch('cartState',JSON.stringify(this.cartObject))
 			}
 		}
 	}

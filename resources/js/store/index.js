@@ -23,9 +23,10 @@ export default  createStore({
       state.token = null;
       state.isAuthenticated = false;
     },
-    cartObjectMutation(state,obj)
+    
+    cartObjectMutationNew(state,Obj)
     {
-      localStorage.setItem('ecommCart',obj)
+      localStorage.setItem('ecommCart',Obj);
       state.ecommCart = JSON.parse(localStorage.getItem('ecommCart'))
     }
     
@@ -54,9 +55,9 @@ export default  createStore({
       localStorage.removeItem('token')
       delete axios.defaults.headers.common['Authorization']
     },
-    cartObject({commit},cartObject)
+    cartState({commit},cartObject)
     {
-      commit('cartObjectMutation', cartObject)
+      commit('cartObjectMutationNew',cartObject)
     }
     
   },

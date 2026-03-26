@@ -8,7 +8,7 @@
           <div class="container clearfix">
               <!-- Website Logo -->
               <div class="logo-header logo-dark">
-                  <router-link v-bind:to="{name:'home'}"><a href="#"><img src="./images/logo.png" alt="logo" /></a></router-link>
+                  <router-link v-bind:to="{name:'home1'}"><a href="#"><img src="./images/logo.png" alt="logo" /></a></router-link>
               </div>
 
               <!-- EXTRA NAV -->
@@ -57,7 +57,9 @@
                                       <h6 class="text-secondary">Totle = $500</h6>
                                   </li>
                                   <li class="text-center d-flex">
-                                      <a href="shop-cart.html" class="btn btn-sm btn-primary me-2 btnhover w-100">View Cart</a>
+                                      <router-link v-bind:to="{name: 'cart'}">
+                                      <a href="#" class="btn btn-sm btn-primary me-2 btnhover w-100">View Cart</a>
+                                      </router-link>
                                       <a href="shop-checkout.html" class="btn btn-sm btn-outline-primary btnhover w-100">Checkout</a>
                                   </li>
                               </ul> 
@@ -149,7 +151,7 @@
                       </div>
                       <ul class="nav navbar-nav">
                           <li class="sub-menu-down">
-                              <router-link v-bind:to="{name:'home'}">
+                              <router-link v-bind:to="{name:'home1'}">
                               <a href="#"><span>Home</span></a>
                               </router-link>
                               
@@ -342,7 +344,7 @@
       removeItemFromCart(id)
       {
         var newcartproducts = this.cartProducts.filter((item)=>item.id !== id)
-        this.$store.dispatch('cartObject',JSON.stringify(newcartproducts));
+        this.$store.dispatch('cartState',JSON.stringify(newcartproducts));
       }
     },
     computed:{
